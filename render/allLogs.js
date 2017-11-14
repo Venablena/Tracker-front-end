@@ -2,15 +2,9 @@ function allLogs() {
     Request.displayAll()
       .then(({ data: logsArray }) => {
         initList(logsArray)
-        const center = {lat: averageLat(logsArray), lng: averageLong(logsArray)}
-        // const center = {lat: logsArray[0].lat, lng: logsArray[0].long}
+        // const center = {lat: averageLat(logsArray), lng: averageLong(logsArray)}
 
-        initMap(center, 16)
-        // let content = logsArray.map(item => {
-        //   return createTable(item)
-        // })
-        // content = content.join(' ')
-        // document.querySelector('#list-view').innerHTML = content
+        initMap(logsArray, 12)
     })
   }
 
@@ -22,26 +16,26 @@ function initList(array) {
   return document.querySelector('#list-view').innerHTML = content
 }
 
-function initMap(center, zoom) {
-  new google.maps.Map(document.getElementById("map"), {
-    center, zoom
-  })
-}
-
-function findAverage(array){
-  const sum = array.reduce((acc, curr) => acc + curr)
-  return sum/array.length
-}
-
-function averageLat(array) {
-  array = array.map(item => item.lat )
-  return findAverage(array)
-}
-
-function averageLong(array) {
-  array = array.map(item => item.long )
-  return findAverage(array)
-}
+// function initMap(center, zoom) {
+//   new google.maps.Map(document.getElementById("map"), {
+//     center, zoom
+//   })
+// }
+//
+// function findAverage(array){
+//   const sum = array.reduce((acc, curr) => acc + curr)
+//   return sum/array.length
+// }
+//
+// function averageLat(array) {
+//   array = array.map(item => item.lat )
+//   return findAverage(array)
+// }
+//
+// function averageLong(array) {
+//   array = array.map(item => item.long )
+//   return findAverage(array)
+// }
 
 
   // console.log(array);
