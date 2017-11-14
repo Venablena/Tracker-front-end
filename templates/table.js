@@ -8,15 +8,17 @@ function createTable(item){
     <td>${item.tag}</td>
     <td><i class="fa fa-times fa-lg"></i></td>
     <td>
-        <i class="fa fa-map-marker fa-lg"></i>
-        <i class="fa fa-plus"></i>
+      <span class="fa-stack fa-lg add-to-map">
+        <i class="fa fa-map-o fa-stack-2x"></i>
+        <i class="fa fa-plus fa-stack-1x"></i>
+      </span>
     <td>
   </tr>
   `
 }
 
 
-// <span class="fa-stack fa-lg">
-//   <i class="fa fa-map-marker fa-stack-2x"></i>
-//   <i class="fa fa-plus-circle fa-stack-1x fa-inverse"></i>
-// </span>
+
+
+// <i class="fa fa-map-o fa-lg"></i>
+// <i class="fa fa-plus"></i>

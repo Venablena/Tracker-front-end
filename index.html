@@ -13,6 +13,11 @@
     <!-- <script src="render/new.js" charset="utf-8"></script>
     <script src="render/update.js" charset="utf-8"></script> -->
     <script defer src="index.js" charset="utf-8"></script>
+    <!-- <script src="render/map.js"></script> -->
+    <script async defer
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMxY1rQgAG7PruMhTZDNHMXDZ3nT_mUNc&callback=initMap">
+    </script>
+    <!-- <script async defer src="style.css"></script> -->
   </head>
   <body>
     <div class="jumbotron jumbotron-fluid bg-warning text-light">
@@ -21,7 +26,7 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-6">
           <table class="table">
@@ -37,10 +42,19 @@
               </tr>
             </thead>
             <tbody id="list-view"></tbody>
-          </table></div>
+          </table>
+        </div>
 
-        <div class="col-6"></div>
-        <!--Map view  -->
+          <div class="col-6">
+            <div id="map-container">
+              <div id="map"
+                style="position:absolute;
+                top: 10%;
+                width: 100%;
+                height: 80%;">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
