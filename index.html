@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Location tableracker</title>
+    <script src="https://use.fontawesome.com/35e91a5fb0.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/requests.js" charset="utf-8"></script>
+    <script src="templates/form.js" charset="utf-8"></script>
+    <script src="templates/event.js" charset="utf-8"></script>
+    <script src="render/allEvents.js" charset="utf-8"></script>
+    <script src="render/new.js" charset="utf-8"></script>
+    <script src="render/update.js" charset="utf-8"></script>
+    <script defer src="index.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div class="jumbotron jumbotron-fluid bg-warning text-light">
+      <div class="container">
+        <h1>Location logs, here you go!</h1>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"><i class="fa fa-location-arrow fa-lg" aria-hidden="true"></i></th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Location</th>
+                <th scope="col">Tag</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Add to Map</th>
+              </tr>
+            </thead>
+            <tbody id="list-view"></tbody>
+          </table></div>
+
+        <div class="col-6"></div>
+        <!--Map view  -->
+      </div>
+    </div>
+  </body>
+</html>
