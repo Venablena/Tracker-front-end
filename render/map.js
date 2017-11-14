@@ -1,21 +1,15 @@
 var map
+var bounds
 
 function initMap(array, zoom) {
   const center = {lat: averageLat(array), lng: averageLong(array)}
   map = new google.maps.Map(document.getElementById("map"), {
     center, zoom
   })
-
-  // return array.forEach(loc => {
-  //   var item = new google.maps.Marker({
-  //     position: {lat: loc.lat, lng: loc.long},
-  //     map:map
-  //   })
-  //   return item
-  // })
-
+  bounds = new google.maps.LatLngBounds()
   markers(array)
-  //setMapOnAll(map)
+  map.fitBounds(bounds)
+  map.panToBounds(bounds)
 }
 
 function findAverage(array){
@@ -35,10 +29,24 @@ function averageLong(array) {
 
 function markers(array) {
   return array.map(item => {
-    item = new google.maps.Marker({
+    let marker = new google.maps.Marker({
         position: {lat: item.lat, lng:item.long},
-        map: map
+        map: map,
+        animation: google.maps.Animation.DROP,
+        label: item.tag,
+        id: item.id
+        // icon:
       })
+    let loc = new google.maps.LatLng(marker.position.lat(), marker.position.lng())
+    bounds.extend(loc)
+    let infoWindow = new google.maps.InfoWindow({
+      id: item.id,
+      content: `${item.tag} : ${item.time}<br>${item.description}`
+    })
+    marker.addListener('click', () => {
+      infoWindow.open(map, marker)
+    })
+    //loc = new google.mapsLatLng(marker.position.lat(), marker.position.lng())
   })
 }
 
