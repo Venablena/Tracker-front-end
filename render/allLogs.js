@@ -1,9 +1,11 @@
 function allLogs() {
     Request.displayAll()
       .then(({ data: logsArray }) => {
-        //console.log(logsArray[0].lat);
         initList(logsArray)
-        initMap()
+        const center = {lat: averageLat(logsArray), lng: averageLong(logsArray)}
+        // const center = {lat: logsArray[0].lat, lng: logsArray[0].long}
+
+        initMap(center, 16)
         // let content = logsArray.map(item => {
         //   return createTable(item)
         // })
@@ -20,33 +22,47 @@ function initList(array) {
   return document.querySelector('#list-view').innerHTML = content
 }
 
-function initMap() {
-  //console.log(array);
-  let spot = {lat: 47.5604485, lng: -122.2990989}
-  let map = new google.maps.Map(document.getElementById("map"), {
-    center: spot,
-    zoom: 14
-  });
-    //array.forEach(loc => {
-      let marker = new google.maps.Marker({
-        position: spot,
-        map: map
-    //})
+function initMap(center, zoom) {
+  new google.maps.Map(document.getElementById("map"), {
+    center, zoom
   })
-  return map
 }
 
-// function initMap(array) {
-//   //console.log(array);
+function findAverage(array){
+  const sum = array.reduce((acc, curr) => acc + curr)
+  return sum/array.length
+}
+
+function averageLat(array) {
+  array = array.map(item => item.lat )
+  return findAverage(array)
+}
+
+function averageLong(array) {
+  array = array.map(item => item.long )
+  return findAverage(array)
+}
+
+
+  // console.log(array);
+  // let
+  //
+  // let markerOptions = {
+  //   position: {lat: loc.lat, lng: loc.long},
+  //   map:map
+  // }
+  //
+  // let map =
+
+// function initMap() {
+//   let spot = {lat: 47.5604485, lng: -122.2990989}
 //   let map = new google.maps.Map(document.getElementById("map"), {
-//     center: {lat: array[0].lat, lng: array[0].long},
-//     zoom: 8
+//     center: spot,
+//     zoom: 14
 //   });
-//     array.forEach(loc => {
 //       let marker = new google.maps.Marker({
-//         position: {lat: loc.lat, lng: loc.long},
+//         position: spot,
 //         map: map
-//     })
 //   })
 //   return map
 // }
