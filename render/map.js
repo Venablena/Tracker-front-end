@@ -6,11 +6,46 @@ function initMap(array, zoom) {
   map = new google.maps.Map(document.getElementById("map"), {
     center, zoom
   })
+  // auto-size the map to display all markers
   bounds = new google.maps.LatLngBounds()
   markers(array)
   map.fitBounds(bounds)
   map.panToBounds(bounds)
 }
+
+function markers(array) {
+  return array.map(item => {
+    let marker = new google.maps.Marker({
+        position: {lat: item.lat, lng:item.long},
+        map: map,
+        animation: google.maps.Animation.DROP,
+        label: item.tag,
+        id: item.id
+        // icon:
+      })
+    // sets the map borders to fit the new marker
+    mapBounds(marker)
+    //adds info overlay on the marker
+    let infoWindow = addInfo(item)
+    marker.addListener('click', () => {
+      infoWindow.open(map, marker)
+    })
+  })
+}
+
+function mapBounds(marker){
+  let loc = new google.maps.LatLng(marker.position.lat(), marker.position.lng())
+  return bounds.extend(loc)
+}
+
+function addInfo(item){
+  return new google.maps.InfoWindow({
+    id: item.id,
+    content: `${item.tag} : ${item.time}<br>${item.description}`
+  })
+}
+
+//Helper functions used to initialize the map before it gets scaled to the boundaries of the markers
 
 function findAverage(array){
   const sum = array.reduce((acc, curr) => acc + curr)
@@ -26,48 +61,3 @@ function averageLong(array) {
   array = array.map(item => item.long )
   return findAverage(array)
 }
-
-function markers(array) {
-  return array.map(item => {
-    let marker = new google.maps.Marker({
-        position: {lat: item.lat, lng:item.long},
-        map: map,
-        animation: google.maps.Animation.DROP,
-        label: item.tag,
-        id: item.id
-        // icon:
-      })
-    let loc = new google.maps.LatLng(marker.position.lat(), marker.position.lng())
-    bounds.extend(loc)
-    let infoWindow = new google.maps.InfoWindow({
-      id: item.id,
-      content: `${item.tag} : ${item.time}<br>${item.description}`
-    })
-    marker.addListener('click', () => {
-      infoWindow.open(map, marker)
-    })
-    //loc = new google.mapsLatLng(marker.position.lat(), marker.position.lng())
-  })
-}
-
-// function makeMarkers(array) {
-//   var markers = []
-//   for (var i = 0; i < array.length; i++) {
-//     var item =  new google.maps.Marker({
-//       position: {lat: array[i].lat, lng:array[i].long},
-//       map: map
-//     })
-//     markers.push(item)
-//   }
-//   for (var i = 0; i < markers.length; i++) {
-//     markers[i].setMap(map);
-//   }
-// }
-
-// function setMapOnAll(map) {
-//   for (var i = 0; i < markers.length; i++) {
-//     markers[i].setMap(map);
-//   }
-// }
-
-// var latLng = new google.maps.LatLng(coords[1],coords[0]);
