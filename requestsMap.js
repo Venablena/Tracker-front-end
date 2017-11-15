@@ -1,6 +1,6 @@
-const url = 'http://localhost:3000/logs'
+const url = 'http://localhost:3000/maps'
 
-window.Request = {
+window.RequestMaps = {
   displayAll () {
     return axios.get(`${url}`)
   },

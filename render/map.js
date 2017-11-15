@@ -29,6 +29,7 @@ function markers(array) {
     let infoWindow = addInfo(item)
     marker.addListener('click', () => {
       infoWindow.open(map, marker)
+      removeMarker(infoWindow, marker)
     })
   })
 }
@@ -41,9 +42,23 @@ function mapBounds(marker){
 function addInfo(item){
   return new google.maps.InfoWindow({
     id: item.id,
-    content: `${item.tag} : ${item.time}<br>${item.description}`
+    content: `${item.tag} : ${item.time}<br>${item.description}<a href="#" class="remove-marker">Remove</a>`
   })
 }
+
+function removeMarker(infoWindow, marker){
+  google.maps.event.addListener(infoWindow,'domready',function(){
+     document.querySelectorAll(".remove-marker").forEach(el => google.maps.event.addDomListener(el, 'click', () => {
+       marker.setMap(null)
+     }))
+  });
+}
+
+// function removeMarker(infoWindow){
+//   google.maps.event.addListener(infoWindow,'domready',function(){
+//      google.maps.event.addDomListener(document.getElementById("remove-marker"), 'click', () => console.log(infoWindow.id))
+//   });
+// }
 
 //Helper functions used to initialize the map before it gets scaled to the boundaries of the markers
 

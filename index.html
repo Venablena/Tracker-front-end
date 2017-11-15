@@ -9,6 +9,9 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/requests.js" charset="utf-8"></script>
+    <scrip src="/RequestMaps.js">
+
+    </script>
     <script src="templates/table.js" charset="utf-8"></script>
     <script src="render/allLogs.js" charset="utf-8"></script>
     <!-- <script src="render/new.js" charset="utf-8"></script>
@@ -18,7 +21,6 @@
     <script
    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMxY1rQgAG7PruMhTZDNHMXDZ3nT_mUNc">
     </script>
-    <!-- <script async defer src="style.css"></script> -->
   </head>
   <body>
     <div class="jumbotron jumbotron-fluid bg-warning text-light">
@@ -31,6 +33,7 @@
       <div class="row">
         <div class="col-6">
           <table class="table">
+            <h3> </h3>
             <thead>
               <tr>
                 <th scope="col"><i class="fa fa-location-arrow fa-lg" aria-hidden="true"></i></th>
@@ -52,21 +55,50 @@
           </div>
 
           <div id="saved-maps">
-            <ul class="nav justify-content-center nav-tabs">
+            <ul class="nav nav-tabs">
               <li class="nav-item">
-                <a class="nav-link active" href="#">Saved Map</a>
+                <a class="nav-link active" href="#">Current</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Saved map 1</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Saved map 2</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
+                <a class="nav-link" href="#">Saved map 3</a>
+              </li>
+              <li class="nav-item">
+                <a class="btn btn-success" href="#">Save this map</a>
+              </li>
+              <li class="nav-item" id="view-list">
+                <a class="nav-link" href="#">View list</a>
               </li>
             </ul>
           </div>
+
+          <!-- <div id="saved-maps">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Current</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Saved map 1</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Saved map 2</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Saved map 3</a>
+              </li>
+              <li class="nav-item">
+                <a class="btn btn-success" href="#">Save this map</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">View list 3</a>
+              </li>
+            </ul>
+          </div> -->
 
 
           <div id="map-container">
