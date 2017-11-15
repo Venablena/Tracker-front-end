@@ -5,6 +5,7 @@
     <title>Location tableracker</title>
     <script src="https://use.fontawesome.com/35e91a5fb0.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/requests.js" charset="utf-8"></script>
@@ -14,7 +15,7 @@
     <script src="render/update.js" charset="utf-8"></script> -->
     <script defer src="index.js" charset="utf-8"></script>
     <script src="render/map.js"></script>
-    <script async defer
+    <script
    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMxY1rQgAG7PruMhTZDNHMXDZ3nT_mUNc">
     </script>
     <!-- <script async defer src="style.css"></script> -->
@@ -45,17 +46,37 @@
           </table>
         </div>
 
-          <div class="col-6">
-            <div id="map-container">
-              <div id="map"
-                style="position:absolute;
-                top: 10%;
-                width: 100%;
-                height: 80%;">
+        <div class="col-6">
+          <div id="map-title">
+            <h2>Map title</h2>
+          </div>
+
+          <div id="saved-maps">
+            <ul class="nav justify-content-center nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Saved Map</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+              </li>
+            </ul>
+          </div>
+
+
+          <div id="map-container">
+            <div id="map"
+              style="">
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+
+          </div> <!-- row --->
+        </div> <!-- container --->
+
   </body>
 </html>
