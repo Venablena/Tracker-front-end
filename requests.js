@@ -10,6 +10,9 @@ window.Request = {
   showMap (id) {
     return axios.get(`${url}/maps/${id}`)
   },
+  showLog (id) {
+    return axios.get(`${url}/logs/${id}`)
+  },
   create (body) {
     return axios.post(`${url}/maps`, body)
   },

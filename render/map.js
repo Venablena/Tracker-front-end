@@ -11,33 +11,37 @@ function initMap(array) {
   // auto-size the map to display all markers
   bounds = new google.maps.LatLngBounds()
   // create an array of markers that can be stored with the map
-  mapMarkers = makeMarkers(array)
+  mapMarkers = array.map(item => makeMarker(item))
   accessMarkers(mapMarkers)
   map.fitBounds(bounds)
   map.panToBounds(bounds)
   return mapMarkers
 }
 
-function makeMarkers(array) {
-  return array.map(item => {
-    let marker = new google.maps.Marker({
-        position: {lat: item.lat, lng:item.long},
-        map: map,
-        animation: google.maps.Animation.DROP,
-        label: item.tag,
-        id: item.id
-        // icon:
-      })
-    // sets the map borders to fit the new marker
-    mapBounds(marker)
-    //adds info overlay on the marker
-    let infoWindow = addInfo(item)
-    marker.addListener('click', () => {
-      infoWindow.open(map, marker)
+function markerConstructor(item) {
+  return new google.maps.Marker({
+      position: {lat: item.lat, lng:item.long},
+      map: map,
+      animation: google.maps.Animation.DROP,
+      label: item.tag,
+      id: item.id
+      // icon:
     })
-    return marker
-  })
 }
+
+function makeMarker(item) {
+  const marker = markerConstructor(item)
+  // sets the map borders to fit the new marker
+  mapBounds(marker)
+  //adds info overlay on the marker
+  let infoWindow = addInfo(item)
+  marker.addListener('click', () => {
+    infoWindow.open(map, marker)
+  })
+  return marker
+}
+
+
 
 function accessMarkers(array){
   array.forEach((marker, index, array) => {

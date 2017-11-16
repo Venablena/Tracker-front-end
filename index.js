@@ -4,4 +4,3 @@ const baseURL = window.location.href.includes('herokuapp') ? herokuURL : localho
 
 allLogs()
 createMap()
-removeLogs()

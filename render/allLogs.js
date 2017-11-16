@@ -4,6 +4,7 @@ function allLogs() {
         document.querySelector('#list-view').innerHTML = init(logsArray, createTable)
         removeLogs('.delete')
         initMap(logsArray)
+        markMap('.add')
     })
     loadMaps()
   }
@@ -45,6 +46,18 @@ function removeLogs(selector){
             .then(({ data: logsArray }) => {
               document.querySelector('#list-view').innerHTML = init(logsArray, createTable)
          })
+      })
+    })
+  })
+}
+
+function markMap(selector){
+  document.querySelectorAll(selector).forEach(link => {
+    link.addEventListener('click', (event) => {
+      const id = event.target.id.replace("add-", "")
+      Request.showLog(id)
+      .then(({data}) =>{
+        return makeMarker(data)
       })
     })
   })
