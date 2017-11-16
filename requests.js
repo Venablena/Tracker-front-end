@@ -7,8 +7,8 @@ window.Request = {
   displayMaps () {
     return axios.get(`${url}/maps`)
   },
-  find (id) {
-    return axios.get(`${url}/${id}`)
+  showMap (id) {
+    return axios.get(`${url}/maps/${id}`)
   },
   create (body) {
     return axios.post(`${url}/maps`, body)

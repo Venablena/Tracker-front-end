@@ -2,8 +2,9 @@ var map
 var bounds
 window.mapMarkers
 
-function initMap(array, zoom) {
+function initMap(array) {
   const center = {lat :0, lng :0}
+  const zoom = 16
   map = new google.maps.Map(document.getElementById("map"), {
     center, zoom
   })

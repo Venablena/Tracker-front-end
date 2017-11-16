@@ -2,18 +2,13 @@ function allLogs() {
     Request.displayLogs()
       .then(({ data: logsArray }) => {
         document.querySelector('#list-view').innerHTML = init(logsArray, createTable)
-        initMap(logsArray, 14)
+        initMap(logsArray)
     })
     Request.displayMaps()
       .then(({data}) => {
-        console.log(data);
         document.querySelector('#saved-maps').innerHTML = init(data, savedMaps)
+        addEvents(".list-group-item-action")
       })
-      // .then(({data}) => {
-      //   data.forEach(item => {
-      //
-      //   })
-      // })
   }
 
 function init(array, callback) {
@@ -21,4 +16,16 @@ function init(array, callback) {
     return callback(item)
   })
   return content.join(' ')
+}
+
+function addEvents(selector){
+  document.querySelectorAll(selector).forEach(link =>{
+    link.addEventListener('click', (event) =>{
+      Request.showMap(event.target.id)
+        .then((result) => {
+          console.log(result.data);
+          initMap(result.data);
+        })
+    })
+  })
 }
