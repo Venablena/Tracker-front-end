@@ -1,14 +1,17 @@
-const url = 'http://localhost:3000/logs'
+const url = 'http://localhost:3000'
 
 window.Request = {
-  displayAll () {
-    return axios.get(`${url}`)
+  displayLogs () {
+    return axios.get(`${url}/logs`)
+  },
+  displayMaps () {
+    return axios.get(`${url}/maps`)
   },
   find (id) {
     return axios.get(`${url}/${id}`)
   },
   create (body) {
-    return axios.post(`${url}`, body)
+    return axios.post(`${url}/maps`, body)
   },
   destroy (id) {
     return axios.delete(`${url}/${id}`)

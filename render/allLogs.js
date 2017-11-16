@@ -1,15 +1,24 @@
 function allLogs() {
-    Request.displayAll()
+    Request.displayLogs()
       .then(({ data: logsArray }) => {
-        initList(logsArray)
+        document.querySelector('#list-view').innerHTML = init(logsArray, createTable)
         initMap(logsArray, 14)
     })
+    Request.displayMaps()
+      .then(({data}) => {
+        console.log(data);
+        document.querySelector('#saved-maps').innerHTML = init(data, savedMaps)
+      })
+      // .then(({data}) => {
+      //   data.forEach(item => {
+      //
+      //   })
+      // })
   }
 
-function initList(array) {
+function init(array, callback) {
   let content = array.map(item => {
-    return createTable(item)
+    return callback(item)
   })
-  content = content.join(' ')
-  return document.querySelector('#list-view').innerHTML = content
+  return content.join(' ')
 }

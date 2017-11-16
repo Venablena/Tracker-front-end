@@ -13,9 +13,10 @@
 
     </script>
     <script src="templates/table.js" charset="utf-8"></script>
+    <script src="templates/savedMaps.js" charset="utf-8"></script>
     <script src="render/allLogs.js" charset="utf-8"></script>
-    <!-- <script src="render/new.js" charset="utf-8"></script>
-    <script src="render/update.js" charset="utf-8"></script> -->
+    <script src="render/newMap.js" charset="utf-8"></script>
+    <!-- <script src="render/update.js" charset="utf-8"></script> -->
     <script defer src="index.js" charset="utf-8"></script>
     <script src="render/map.js"></script>
     <script
@@ -50,62 +51,31 @@
         </div>
 
         <div class="col-6">
-          <div id="map-title">
-            <h2>Map title</h2>
+          <div>
+            <h2 id="map-title">Map title</h2>
           </div>
+          <div class="row">
+            <div class="col-3">
 
-          <div id="saved-maps">
-            <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Current</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Saved map 1</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Saved map 2</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Saved map 3</a>
-              </li>
-              <li class="nav-item">
-                <a class="btn btn-success" href="#">Save this map</a>
-              </li>
-              <li class="nav-item" id="view-list">
-                <a class="nav-link" href="#">View list</a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- <div id="saved-maps">
-            <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Current</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Saved map 1</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Saved map 2</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Saved map 3</a>
-              </li>
-              <li class="nav-item">
-                <a class="btn btn-success" href="#">Save this map</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">View list 3</a>
-              </li>
-            </ul>
-          </div> -->
+                <li class="list-group-item" id="view-list">
+                  <a href="#">List view</a>
+                </li>
+                <li class="list-group-item">
+                  <a class="btn btn-success" href="#" id="save-map">Save</a>
+                </li>
+                <ul class="list-group" id="saved-maps">
 
 
-          <div id="map-container">
-            <div id="map"
-              style="">
+              </ul>
+            </div>
+
+            <div class="col-9" id="map-container">
+              <div id="map"
+                style="">
+              </div>
             </div>
           </div>
+
 
           </div> <!-- row --->
         </div> <!-- container --->
