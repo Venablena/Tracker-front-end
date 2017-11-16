@@ -21,9 +21,9 @@ function init(array, callback) {
 function addEvents(selector){
   document.querySelectorAll(selector).forEach(link =>{
     link.addEventListener('click', (event) =>{
+      document.querySelector("#map-title").innerHTML =event.target.textContent
       Request.showMap(event.target.id)
         .then((result) => {
-          console.log(result.data);
           initMap(result.data);
         })
     })
