@@ -2,13 +2,10 @@ function allLogs() {
     Request.displayLogs()
       .then(({ data: logsArray }) => {
         document.querySelector('#list-view').innerHTML = init(logsArray, createTable)
+        removeLogs('.delete')
         initMap(logsArray)
     })
-    Request.displayMaps()
-      .then(({data}) => {
-        document.querySelector('#saved-maps').innerHTML = init(data, savedMaps)
-        addEvents(".list-group-item-action")
-      })
+    loadMaps()
   }
 
 function init(array, callback) {
@@ -18,14 +15,37 @@ function init(array, callback) {
   return content.join(' ')
 }
 
-function addEvents(selector){
-  document.querySelectorAll(selector).forEach(link =>{
-    link.addEventListener('click', (event) =>{
-      document.querySelector("#map-title").innerHTML =event.target.textContent
+function loadMaps() {
+  Request.displayMaps()
+    .then(({data}) => {
+      document.querySelector('#saved-maps').innerHTML = init(data, savedMaps)
+      addMapEvents(".list-group-item-action")
+    })
+}
+
+function addMapEvents(selector){
+  document.querySelectorAll(selector).forEach(link => {
+    link.addEventListener('click', (event) => {
+      document.querySelector("#map-title").innerHTML = event.target.textContent
       Request.showMap(event.target.id)
         .then((result) => {
           initMap(result.data);
         })
+    })
+  })
+}
+
+function removeLogs(selector){
+  document.querySelectorAll(selector).forEach(link => {
+    link.addEventListener('click', (event) => {
+      const id = event.target.id.replace("delete-", "")
+      Request.destroy(id)
+        .then(() => {
+          Request.displayLogs()
+            .then(({ data: logsArray }) => {
+              document.querySelector('#list-view').innerHTML = init(logsArray, createTable)
+         })
+      })
     })
   })
 }

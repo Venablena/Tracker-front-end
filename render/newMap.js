@@ -3,7 +3,9 @@ function createMap () {
     const markers = mapMarkers.map(marker => marker.id)
     let body = {map: {name: "MyMap"}, markers: markers}
     Request.create(body)
-    .then(result => document.querySelector("#map-title").innerHTML = result.data.name)
+    .then(() => {
+      loadMaps()
+    })
     .catch(error => console.error(error))
   })
 }
