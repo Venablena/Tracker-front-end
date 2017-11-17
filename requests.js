@@ -1,4 +1,4 @@
-const url = 'http://localhost:3000'
+const url = 'http://put-a-pin-on-it.herokuapp.com/'
 
 window.Request = {
   displayLogs () {
