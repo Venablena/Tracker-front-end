@@ -1,4 +1,4 @@
-const url = 'http://put-a-pin-on-it.herokuapp.com/'
+const url = 'http://put-a-pin-on-it.herokuapp.com'
 
 window.Request = {
   displayLogs () {
