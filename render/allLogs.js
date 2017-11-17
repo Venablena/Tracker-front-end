@@ -1,13 +1,39 @@
 function allLogs() {
-    Request.displayLogs()
-      .then(({ data: logsArray }) => {
-        document.querySelector('#list-view').innerHTML = init(logsArray, createTable)
-        removeLogs('.delete')
-        initMap(logsArray)
-        markMap('.add')
-    })
-    loadMaps()
+  loadMaps()
+  loadLogs()
+}
+
+function loadLogs(){
+  return Request.displayLogs()
+    .then(({ data: logsArray }) => {
+      document.querySelector('#list-view').innerHTML = init(logsArray, createTable)
+      removeLogs('.delete')
+      initMap(logsArray)
+      markMap('.add')
+      matchMap(document.querySelectorAll('.log-row'))
+  })
+}
+
+function matchMap(array) {
+  array.forEach(item => {
+    //console.log(item);
+    return matchRow(item)
+  })
+}
+
+function matchRow(row){
+  const id = row.id.replace("row-", "")
+  console.log(typeof row);
+  if(mapMarkers.includes(parseInt(id))){
+    row.classList.add("mappy")
   }
+  //console.log(some)
+
+  // if(mapMarkers.includes(id)){
+  //   ;
+  //
+  // }
+}
 
 function init(array, callback) {
   let content = array.map(item => {
@@ -21,8 +47,11 @@ function loadMaps() {
     .then(({data}) => {
       document.querySelector('#saved-maps').innerHTML = init(data, savedMaps)
       addMapEvents(".list-group-item-action")
+
     })
 }
+
+
 
 function addMapEvents(selector){
   document.querySelectorAll(selector).forEach(link => {
@@ -55,7 +84,6 @@ function markMap(selector){
   document.querySelectorAll(selector).forEach(link => {
     link.addEventListener('click', (event) => {
       const id = event.target.id.replace("add-", "")
-      //saves the marker in an array used to render the map
       //if(isNewMarker(parseInt(id))){
         Request.showLog(id)
         .then(({data}) =>{

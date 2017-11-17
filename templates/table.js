@@ -1,6 +1,6 @@
 function createTable(item){
   return`
-  <tr>
+  <tr class="log-row" id= row-${item.id}>
     <td></td>
     <td>${item.date}</td>
     <td>${item.time}</td>
