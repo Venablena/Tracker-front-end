@@ -22,10 +22,8 @@ function matchMap(array) {
 
 function matchRow(row){
   const id = row.id.replace("row-", "")
-  console.log("this is the row id: " + id);
   row.classList.remove("mappy")
   if(mapMarkers.includes(parseInt(id))){
-    console.log("Row matches mapMarkers at index: " + mapMarkers.indexOf(parseInt(id)))
     row.classList.add("mappy")
   }
 }
