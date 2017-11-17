@@ -1,6 +1,7 @@
 function allLogs() {
-  loadMaps()
   loadLogs()
+  loadMaps()
+
 }
 
 function loadLogs(){
@@ -10,29 +11,22 @@ function loadLogs(){
       removeLogs('.delete')
       initMap(logsArray)
       markMap('.add')
-      matchMap(document.querySelectorAll('.log-row'))
   })
 }
 
 function matchMap(array) {
   array.forEach(item => {
-    //console.log(item);
     return matchRow(item)
   })
 }
 
 function matchRow(row){
   const id = row.id.replace("row-", "")
-  console.log(typeof row);
+  console.log("hi");
+  row.classList.remove("mappy")
   if(mapMarkers.includes(parseInt(id))){
     row.classList.add("mappy")
   }
-  //console.log(some)
-
-  // if(mapMarkers.includes(id)){
-  //   ;
-  //
-  // }
 }
 
 function init(array, callback) {
@@ -47,7 +41,6 @@ function loadMaps() {
     .then(({data}) => {
       document.querySelector('#saved-maps').innerHTML = init(data, savedMaps)
       addMapEvents(".list-group-item-action")
-
     })
 }
 
@@ -87,7 +80,8 @@ function markMap(selector){
       //if(isNewMarker(parseInt(id))){
         Request.showLog(id)
         .then(({data}) =>{
-          return makeMarker(data)
+          makeMarker(data)
+          matchMap(document.querySelectorAll('.log-row'))
         })
       //}
     })

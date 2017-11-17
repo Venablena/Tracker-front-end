@@ -14,17 +14,18 @@ function initMap(array) {
   array.map(item => makeMarker(item))
   map.fitBounds(bounds)
   map.panToBounds(bounds)
-  console.log(mapMarkers);
+  matchMap(document.querySelectorAll('.log-row'))
 }
 
 function markerConstructor(item) {
+  //var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/'
   return new google.maps.Marker({
       position: {lat: item.lat, lng:item.long},
       map: map,
       animation: google.maps.Animation.DROP,
-      label: item.tag,
-      id: item.id
-      // icon:
+      label: defineLabel(item.tag),
+      id: item.id,
+      //icon: iconBase + defineTag(item.tag)
     })
 }
 
@@ -55,10 +56,24 @@ function addInfo(item){
 function removeMarker(marker, id){
   marker.setMap(null)
   const index = mapMarkers.indexOf(id)
-  return mapMarkers.splice(index, 1)
+  mapMarkers.splice(index, 1)
+  matchMap(document.querySelectorAll('.log-row'))
 }
 
 function mapBounds(marker){
   let loc = new google.maps.LatLng(marker.position.lat(), marker.position.lng())
   return bounds.extend(loc)
+}
+
+function defineLabel(item){
+  let tag = ""
+  if(item === "click") {
+    tag = `👍`}
+  if(item === "double_click") {
+    tag = `💛`
+  }
+  if(item === "hold") {
+    tag = `👎`
+  }
+  return tag
 }
