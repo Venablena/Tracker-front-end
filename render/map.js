@@ -12,6 +12,7 @@ function initMap(array) {
   bounds = new google.maps.LatLngBounds()
   mapMarkers = []
   array.map(item => makeMarker(item))
+  console.log("initial markers" + mapMarkers);
   map.fitBounds(bounds)
   map.panToBounds(bounds)
   matchMap(document.querySelectorAll('.log-row'))
@@ -32,6 +33,7 @@ function markerConstructor(item) {
 function makeMarker(item) {
   const marker = markerConstructor(item)
   mapMarkers.push(marker.id)
+  console.log("make marker with id: " + marker.id);
   // sets the map borders to fit the new marker
   mapBounds(marker)
   //adds info overlay on the marker
@@ -40,6 +42,7 @@ function makeMarker(item) {
     infoWindow.open(map, marker)
     const remove = document.querySelector(".remove-marker")
     google.maps.event.addDomListener(remove, 'click', (event) => {
+      console.log(event.target.id)
      removeMarker(marker, event.target.id)
     })
   })
@@ -49,13 +52,14 @@ function makeMarker(item) {
 function addInfo(item){
   return new google.maps.InfoWindow({
     id: item.id,
-    content: `${item.tag} : ${item.time}<br>${item.description}<a href="#" class="remove-marker" id=${item.id}>Remove</a>`
+    content: `${defineLabel(item.tag)} : ${item.time}<br>I could add a description here...${item.description}<a href="#" class="remove-marker" id=${item.id}>Remove</a>`
   })
 }
 
 function removeMarker(marker, id){
   marker.setMap(null)
   const index = mapMarkers.indexOf(id)
+  console.log("I'm removing id: " +id+ "at the index "+ index)
   mapMarkers.splice(index, 1)
   matchMap(document.querySelectorAll('.log-row'))
 }
