@@ -1,6 +1,6 @@
 var map
 var bounds
-window.mapMarkers
+window.mapMarkers = []
 
 function initMap(array) {
   const center = {lat :0, lng :0}
@@ -10,12 +10,11 @@ function initMap(array) {
   })
   // auto-size the map to display all markers
   bounds = new google.maps.LatLngBounds()
-  // create an array of markers that can be stored with the map
-  mapMarkers = array.map(item => makeMarker(item))
-  accessMarkers(mapMarkers)
+  mapMarkers = []
+  array.map(item => makeMarker(item))
   map.fitBounds(bounds)
   map.panToBounds(bounds)
-  return mapMarkers
+  console.log(mapMarkers);
 }
 
 function markerConstructor(item) {
@@ -31,25 +30,19 @@ function markerConstructor(item) {
 
 function makeMarker(item) {
   const marker = markerConstructor(item)
+  mapMarkers.push(marker.id)
   // sets the map borders to fit the new marker
   mapBounds(marker)
   //adds info overlay on the marker
   let infoWindow = addInfo(item)
   marker.addListener('click', () => {
     infoWindow.open(map, marker)
-  })
-  return marker
-}
-
-
-
-function accessMarkers(array){
-  array.forEach((marker, index, array) => {
-    //activates the removeMarker function
-     marker.addListener('click', () => {
-      removeMarker(marker, index, array)
+    const remove = document.querySelector(".remove-marker")
+    google.maps.event.addDomListener(remove, 'click', (event) => {
+     removeMarker(marker, event.target.id)
     })
   })
+  return marker
 }
 
 function addInfo(item){
@@ -59,11 +52,10 @@ function addInfo(item){
   })
 }
 
-function removeMarker(marker, index, array){
-   document.querySelectorAll(".remove-marker").forEach(el => google.maps.event.addDomListener(el, 'click', (event) => {
-     marker.setMap(null)
-      return array.splice(index, 1)
-   }))
+function removeMarker(marker, id){
+  marker.setMap(null)
+  const index = mapMarkers.indexOf(id)
+  return mapMarkers.splice(index, 1)
 }
 
 function mapBounds(marker){

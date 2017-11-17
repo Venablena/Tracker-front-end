@@ -55,10 +55,21 @@ function markMap(selector){
   document.querySelectorAll(selector).forEach(link => {
     link.addEventListener('click', (event) => {
       const id = event.target.id.replace("add-", "")
-      Request.showLog(id)
-      .then(({data}) =>{
-        return makeMarker(data)
-      })
+      //saves the marker in an array used to render the map
+      //if(isNewMarker(parseInt(id))){
+        Request.showLog(id)
+        .then(({data}) =>{
+          return makeMarker(data)
+        })
+      //}
     })
   })
 }
+
+// function isNewMarker(id){
+//   if(mapMarkers.includes(id)) {
+//     alert("This pin is already on the map.")
+//     return false
+//   }
+//   return mapMarkers.push(id)
+// }
