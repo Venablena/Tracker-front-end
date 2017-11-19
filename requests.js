@@ -30,5 +30,8 @@ window.Request = {
   },
   addLogs (body) {
     return axios.post(`${url}/logs`, body)
+  },
+  clearLogs (id, sheet){
+    return axios.post(`${sheetsUrl}/${id}/values/${sheet}:clear?${key}`)
   }
 }

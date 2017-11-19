@@ -11,8 +11,7 @@ function createTable(item){
   return`
   <tr class="log-row" id= row-${item.id}>
     <td></td>
-    <td>${item.date}</td>
-    <td>${item.time}</td>
+    <td>${item.dateTime}</td>
     <td>${item.long} / ${item.lat}</td>
     <td>${defineTag(item.tag)}</td>
     <td><i class="fa fa-times fa-lg delete" id="delete-${item.id}"></i></td>
