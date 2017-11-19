@@ -9,9 +9,7 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/requests.js" charset="utf-8"></script>
-    <scrip src="/RequestMaps.js">
-
-    </script>
+    <scrip src="render/refreshLogs.js"></script>
     <script src="templates/table.js" charset="utf-8"></script>
     <script src="templates/savedMaps.js" charset="utf-8"></script>
     <script src="render/allLogs.js" charset="utf-8"></script>
@@ -19,14 +17,13 @@
     <script src="render/map.js"></script>
     <script defer src="index.js" charset="utf-8"></script>
 
-    <script
-   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMxY1rQgAG7PruMhTZDNHMXDZ3nT_mUNc">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMxY1rQgAG7PruMhTZDNHMXDZ3nT_mUNc">
     </script>
   </head>
   <body>
     <div class="jumbotron jumbotron-fluid bg-warning text-light">
       <div class="container">
-        <h1>Where have you been all this time?</h1>
+        <h1>Where have you been all this time?<span><a href="#" class="btn btn-link" id="refresh">Refresh logs</a></span></h1>
       </div>
     </div>
 

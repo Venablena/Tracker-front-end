@@ -4,7 +4,6 @@ function createMap () {
     Request.create(body)
     .then(() => {
       loadMaps()
-      
     })
     .catch(error => console.error(error))
   })
