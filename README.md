@@ -5,7 +5,7 @@ This interface displays data gathered from a wearable clicker button through an 
 It was inspired by user research I did while working on a fitness tracker. 
 
 Users can:
-
+* record a "feeling" with a location they visit (thumbs up, thums down, heart)
 * view all their past logs in a list view
 * add and remove their logs from the map view
 * save maps in the database
