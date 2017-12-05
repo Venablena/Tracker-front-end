@@ -61,13 +61,12 @@ function removeLogs(selector){
   document.querySelectorAll(selector).forEach(link => {
     link.addEventListener('click', (event) => {
       const id = event.target.id.replace("delete-", "")
+      // We can flatten this!
       Request.destroy(id)
-        .then(() => {
-          Request.displayLogs()
-            .then(({ data: logsArray }) => {
-              document.querySelector('#list-view').innerHTML = init(logsArray, createTable)
+        .then(() => Request.displayLogs())
+        .then(({ data: logsArray }) => {
+          document.querySelector('#list-view').innerHTML = init(logsArray, createTable)
          })
-      })
     })
   })
 }
@@ -76,7 +75,6 @@ function markMap(selector){
   document.querySelectorAll(selector).forEach(link => {
     link.addEventListener('click', (event) => {
       const id = event.target.id.replace("add-", "")
-      //if(isNewMarker(parseInt(id))){
         Request.showLog(id)
         .then(({data}) =>{
           makeMarker(data)
