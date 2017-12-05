@@ -16,6 +16,7 @@ window.Request = {
   showLog (id) {
     return axios.get(`${url}/logs/${id}`)
   },
+  // I would keep the naming convention the same here. For example, `createMap`
   create (body) {
     return axios.post(`${url}/maps`, body)
   },
