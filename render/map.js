@@ -17,15 +17,14 @@ function initMap(array) {
   matchMap(document.querySelectorAll('.log-row'))
 }
 
-function markerConstructor(item) {
-  //var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/'
+// Let's destructure!
+function markerConstructor({ lat, long, tag, id }) {
   return new google.maps.Marker({
-      position: {lat: item.lat, lng:item.long},
+      position: {lat: lat, lng: long},
       map: map,
       animation: google.maps.Animation.DROP,
-      label: defineLabel(item.tag),
-      id: item.id,
-      //icon: iconBase + defineTag(item.tag)
+      label: defineLabel(tag),
+      id
     })
 }
 
@@ -46,11 +45,11 @@ function makeMarker(item) {
   return marker
 }
 
-function addInfo(item){
-  return new google.maps.InfoWindow({
-    id: item.id,
-    content: `${defineLabel(item.tag)}<br>${item.date} / ${item.time}<br>I could add a description here...${item.description}<br><a href="#" class="remove-marker" id=${item.id}>Remove</a>`
-  })
+// We can destructure here too!
+function addInfo({ tag, date, time, description, id }){
+  const content = `${defineLabel(tag)}<br>${date} / ${time}<br>I could add a description here...${description}<br><a href="#" class="remove-marker" id=${id}>Remove</a>`
+
+  return new google.maps.InfoWindow({ id, content })
 }
 
 function removeMarker(marker, id){
@@ -66,14 +65,9 @@ function mapBounds(marker){
 }
 
 function defineLabel(item){
-  let tag = ""
-  if(item === "click") {
-    tag = `👍`}
-  if(item === "double_click") {
-    tag = `💛`
-  }
-  if(item === "hold") {
-    tag = `👎`
-  }
-  return tag
+  // What about an object! This might be easier to export to a different file
+  // later on if there were lots of options.
+  const labels = { click: `👍`, double_click: `💛`, hold: `👎` }
+  
+  return labels[item]
 }
