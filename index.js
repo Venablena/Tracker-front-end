@@ -16,7 +16,7 @@ function refreshDB(){
     })
     // .then(() => {
     //   Request.clearLogs('1e1GkbibPFIxJEyuWQsZnudRE2q3rQmTppUXr7-wrP1w', 'sheet1')
-    })
+    //})
   // Request.getSheets('1BSRNmpm3OIIWP2qqZ7SN2ONdTNRPWdNNsKFHVO0JhDE', 'sheet1')
   //   .then((result) => {
   //     const values =  convert(result.data.values)
