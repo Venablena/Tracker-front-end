@@ -40,7 +40,7 @@ function makeMarker(item) {
     infoWindow.open(map, marker)
     const remove = document.querySelector(".remove-marker")
     google.maps.event.addDomListener(remove, 'click', (event) => {
-     removeMarker(marker, event.target.id)
+      removeMarker(marker, event.target.id)
     })
   })
   return marker
@@ -49,7 +49,7 @@ function makeMarker(item) {
 function addInfo(item){
   return new google.maps.InfoWindow({
     id: item.id,
-    content: `${defineLabel(item.tag)}<br>${item.date} / ${item.time}<br>I could add a description here...${item.description}<br><a href="#" class="remove-marker" id=${item.id}>Remove</a>`
+    content: `${defineLabel(item.tag)}<br>${item.dateTime} <br>I could add a description here...${item.description}<br><a href="#" class="remove-marker" id=${item.id}>Remove</a>`
   })
 }
 

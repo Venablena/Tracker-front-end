@@ -3,7 +3,6 @@ const herokuURL = 'http://put-a-pin-on-it.herokuapp.com/'
 const baseURL = window.location.href.includes('herokuapp') ? herokuURL : localhostURL
 
 document.querySelector("#refresh").addEventListener('click', refreshDB)
-//refresh()
 allLogs()
 createMap()
 
@@ -14,9 +13,10 @@ function refreshDB(){
       const values =  convertLog(result.data.values)
       Request.addLogs(values)
     })
+    //  Doesn't work without OAuth2:
     // .then(() => {
     //   Request.clearLogs('1e1GkbibPFIxJEyuWQsZnudRE2q3rQmTppUXr7-wrP1w', 'sheet1')
-    //})
+    // })
 }
 
 function convertLog(valuesArr){
