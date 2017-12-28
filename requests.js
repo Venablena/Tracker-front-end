@@ -1,5 +1,6 @@
 //const url = 'http://put-a-pin-on-it.herokuapp.com'
 const url = 'http://localhost:3000'
+const locationUrl = 'https://maps.googleapis.com/maps/api/geocode'
 const sheetsUrl = 'https://sheets.googleapis.com/v4/spreadsheets'
 const key = 'key=AIzaSyDMxY1rQgAG7PruMhTZDNHMXDZ3nT_mUNc'
 
@@ -31,7 +32,11 @@ window.Request = {
   addLogs (body) {
     return axios.post(`${url}/logs`, body)
   },
-  clearLogs (id, sheet){
-    return axios.post(`${sheetsUrl}/${id}/values/${sheet}:clear?${key}`)
+  getLocations(lat, long){
+    return axios.get(`${locationUrl}/json?latlng=${lat},${long}&${key}`)
   }
+
+  // clearLogs (id, sheet){
+  //   return axios.post(`${sheetsUrl}/${id}/values/${sheet}:clear?${key}`)
+  // }
 }
