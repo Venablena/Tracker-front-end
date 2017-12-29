@@ -1,7 +1,6 @@
 function allLogs() {
   loadLogs()
   loadMaps()
-
 }
 
 function loadLogs(){
@@ -9,13 +8,13 @@ function loadLogs(){
     .then(({ data: logsArray }) => {
       document.querySelector('#list-view').innerHTML = init(logsArray, createTable)
       removeLogs('.delete')
-      initMap(logsArray)
-      markMap('.add')
+      // initMap(logsArray)
+      // markMap('.add')
       loadLocations()
   })
 }
 
-//Load locations form Google maps API and inject them into location <td>
+//Load locations from Google maps API and inject them into location <td>
 function loadLocations(){
   document.querySelectorAll('.location').forEach(el => {
     const lat = el.innerHTML.slice(0, el.innerHTML.indexOf('/'))
@@ -55,11 +54,12 @@ function init(array, callback) {
   return content.join(' ')
 }
 
+//Loads saved maps
 function loadMaps() {
   Request.displayMaps()
     .then(({data}) => {
       document.querySelector('#saved-maps').innerHTML = init(data, savedMaps)
-      addMapEvents(".list-group-item-action")
+      addMapEvents(".nav-link")
     })
 }
 

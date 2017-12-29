@@ -13,14 +13,17 @@ function refreshDB(){
     Request.displayLogs()
   ])
     .then((result) => {
-      const newLogs =  convertLog(result[0].data.values)
-      const oldLogs = result[1].data
+      let newLogs =  convertLog(result[0].data.values)
+      let oldLogs = result[1].data
+      oldLogs = oldLogs.map(el => {dateTime = el.dateTime, lat= el.lat, long= el.long})
+      newLogs = newLogs.map(el =>el.dateTime)
+      console.log(newLogs)
+      console.log(oldLogs)
       //HOW TO FILTER AND SEE IF A RECORD ALREADY EXISTS?
-      // const uniqueLogs = newLogs.filter(el => {
-      //   isNew(el, oldLogs)
-      // })
-      const locations = newLogs.map(el => Request.getLocations(el.lat, el.long))
-      console.log(locations);
+      const uniqueLogs = newLogs.filter(el => {
+        return oldLogs.includes(el.dateTime)
+      })
+      console.log(uniqueLogs);
       //Request.addLogs(newLogs)
     })
 

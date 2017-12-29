@@ -11,3 +11,7 @@
  .mappy {
    background-color: LightBlue;
  }
+
+#savedMaps {
+  display: inline-block;
+}

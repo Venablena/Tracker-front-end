@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
         <div class="col-6">
           <table class="table">
@@ -51,31 +51,33 @@
         </div>
 
         <div class="col-6">
-          <div class="text-center">
-            <h2 id="map-title">Map title</h2>
+          <div class="row">
+            <h3>Load existing map</h3>
+            <button type="button" class="btn btn-outline-info" id="new-map">New Map</button>
           </div>
           <div class="row">
-            <div class="col-3">
-
-                <li class="list-group-item list-group-item-success text-center" id="save-map">
-                  Save
-                </li>
-                <ul class="list-group text-center" id="saved-maps">
-
-
+            <nav class="navbar">
+              <ul class="navbar nav" id="saved-maps">
               </ul>
-            </div>
 
-            <div class="col-9" id="map-container">
-              <div id="map"
-                style="">
-              </div>
-            </div>
+            </nav>
+          </div>
+
+          <div class="row">
+            <h2 id="map-title"></h2>
+          </div>
+
+          <div class="row" id="map-container">
+            <div id="map" style=""></div>
+          </div>
+
+          <div class="row">
+            <button type="button" class="btn btn-outline-info" id="save-map">Save</button>
           </div>
 
 
-          </div> <!-- row --->
-        </div> <!-- container --->
+        </div> <!-- row --->
+      </div> <!-- container --->
 
   </body>
 </html>

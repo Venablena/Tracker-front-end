@@ -29,12 +29,3 @@ function defineTag(item){
   }
   return tag
 }
-
-
-function defineLocation(lat, long){
- return Request.getLocations(lat, long)
-  .then(result => {
-    document.querySelector('#location').innerHTML =  result.data.results[0].formatted_address
-    // OR result.data.results[0].place_id)
-  })
-}
