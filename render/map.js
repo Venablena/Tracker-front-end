@@ -3,6 +3,7 @@ var bounds
 window.mapMarkers = []
 
 function initMap(array) {
+  cleanAllRows(document.querySelectorAll('.log-row'))
   const center = {lat :0, lng :0}
   const zoom = 16
   map = new google.maps.Map(document.getElementById("map"), {
@@ -15,6 +16,10 @@ function initMap(array) {
   map.fitBounds(bounds)
   map.panToBounds(bounds)
   matchMap(document.querySelectorAll('.log-row'))
+}
+
+function cleanAllRows(array){
+  array.forEach(item => item.classList.remove("mappy"))
 }
 
 function markerConstructor(item) {
@@ -60,9 +65,12 @@ function removeMarker(marker, id){
   matchMap(document.querySelectorAll('.log-row'))
 }
 
+//gets the location of the marker and extedns and centers the map accordingly
 function mapBounds(marker){
   let loc = new google.maps.LatLng(marker.position.lat(), marker.position.lng())
-  return bounds.extend(loc)
+  bounds.extend(loc)
+  map.fitBounds(bounds)
+  map.setCenter(bounds.getCenter())
 }
 
 function defineLabel(item){

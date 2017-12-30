@@ -9,7 +9,7 @@ function loadLogs(){
       document.querySelector('#list-view').innerHTML = init(logsArray, createTable)
       removeLogs('.delete')
       // initMap(logsArray)
-      // markMap('.add')
+      markMap('.add')
       loadLocations()
   })
 }
